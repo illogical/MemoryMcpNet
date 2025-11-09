@@ -24,7 +24,32 @@ To test this MCP server from source code (locally) without using a built MCP ser
 
 ## Testing the MCP Server
 
-Once configured, you can ask Copilot Chat to store and retrieve memories by category using the `StoreMemory` and `RetrieveMemory` tools on the `MemoryMcpNet` MCP server.
+Once configured, you can use the following MCP server tools provided by `FileMemoryTools`:
+
+- **StoreMemory**: Stores a memory in a specified category.
+  - Parameters:
+    - `category`: The type of memory (see `MemoryCategory` enum)
+    - `memory`: The memory content to store
+  - Returns: Confirmation message with stored content
+
+- **RetrieveMemory**: Retrieves all memories from a specified category.
+  - Parameters:
+    - `category`: The type of memory
+  - Returns: JSON array of memory items (`Id`, `Content`, `LastUpdated`)
+
+- **RemoveMemory**: Removes a memory by category and ID.
+  - Parameters:
+    - `category`: The type of memory
+    - `id`: The unique ID of the memory to remove
+  - Returns: Confirmation message if removed, or not found message
+
+Example usage in Copilot Chat:
+
+```
+mcp_memorymcpnet_store_memory: Store a note in the 'Notes' category
+mcp_memorymcpnet_retrieve_memory: Retrieve all reminders
+mcp_memorymcpnet_remove_memory: Remove memory with ID 5 from 'History'
+```
 
 ## Publishing to NuGet.org
 
