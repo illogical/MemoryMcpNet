@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "MemoryMcpNet": {
+      "type": "stdio",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "../MemoryMcpNet/MemoryMcpNet.csproj"
+      ]
+    }
+  }
+}
