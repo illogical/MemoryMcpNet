@@ -71,5 +71,31 @@ namespace MemoryMcpNet.Services
             string json = await File.ReadAllTextAsync(filePath);
             return json;
         }
+
+        public async Task<bool> RemoveMemoryByIdAsync(MemoryCategory category, int id)
+        {
+            string filePath = GetFilePath(category);
+            if (!File.Exists(filePath))
+                return false;
+            string json = await File.ReadAllTextAsync(filePath);
+            if (string.IsNullOrWhiteSpace(json))
+                return false;
+            List<MemoryInfo> memories;
+            try
+            {
+                memories = JsonSerializer.Deserialize<List<MemoryInfo>>(json) ?? new List<MemoryInfo>();
+            }
+            catch
+            {
+                return false;
+            }
+            var memoryToRemove = memories.Find(m => m.Id == id);
+            if (memoryToRemove == null)
+                return false;
+            memories.Remove(memoryToRemove);
+            string outputJson = JsonSerializer.Serialize(memories, new JsonSerializerOptions { WriteIndented = true });
+            await File.WriteAllTextAsync(filePath, outputJson);
+            return true;
+        }
     }
 }
