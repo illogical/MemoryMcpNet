@@ -10,11 +10,15 @@ namespace MemoryMcpNet.Services
 
     public class MemoryFileStorageService
     {
+        private readonly MemoryConfigService _configService;
+        private string MemoryConfigFilePath => Path.Combine(StorageLocation, "MemoryConfig.json");
         public string StorageLocation { get; } = @"C:\temp\MCPMemoryStorage";
+
 
         public MemoryFileStorageService(string storageLocation)
         {
             StorageLocation = storageLocation;
+            _configService = new MemoryConfigService(MemoryConfigFilePath);
             Directory.CreateDirectory(StorageLocation);
 
             foreach (MemoryCategory category in Enum.GetValues(typeof(MemoryCategory)))
@@ -50,6 +54,7 @@ namespace MemoryMcpNet.Services
             }
             var memory = new MemoryInfo
             {
+                Id = _configService.GetAndIncrementNextId(),
                 Content = content,
                 LastUpdated = DateTime.UtcNow.ToString("o")
             };

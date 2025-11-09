@@ -11,8 +11,14 @@ namespace MemoryMcpNet.Models
         /// <summary>
         /// A description of the memory item. Might want to use local LLM summarization to create this.
         /// </summary>
-        // [JsonPropertyName("Description")]
-        // public string Description { get; set; } = string.Empty;
+        //[JsonPropertyName("Description")]
+        //public string Description { get; set; } = string.Empty;
+
+        /// <summary>
+        /// The unique identifier for the memory item.
+        /// </summary>
+        [JsonPropertyName("Id")]
+        public int Id { get; set; }
 
         /// <summary>
         /// The actual content of the memory item.
