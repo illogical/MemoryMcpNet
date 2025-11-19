@@ -1,4 +1,4 @@
-# MCP Server
+# File-Based Memory MCP Server
 
 This is a sample MCP server implemented in .NET using the [ModelContextProtocol](https://www.nuget.org/packages/ModelContextProtocol) C# SDK. It provides tools to store and retrieve memories categorized by type using file-based storage.
 
@@ -72,10 +72,6 @@ For both VS Code and Visual Studio, the configuration file uses the following se
       "type": "stdio",
       "command": "dnx",
       "args": [
-        "<your package ID here>",
-        "--version",
-        "<your package version here>",
-        "--yes"
       ]
     }
   }
